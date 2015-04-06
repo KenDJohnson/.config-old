@@ -1,0 +1,44 @@
+alignment bottom_middle
+background yes
+border_width 0
+double_buffer yes
+cpu_avg_samples 2
+default_color ffffff
+default_outline_color 222222
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+use_xft yes
+xftfont Source Code Pro:side=8
+gap_x 5
+gap_y 0
+minimum_size 1366 6
+maximum_width 1920
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+own_window no
+own_window_class Conky
+own_window_type desktop
+own_window_transparent yes
+stippled_borders -
+update_interval 1.0
+uppercase no
+use_spacer left
+show_graph_scale no
+show_graph_range no
+format_human_readable yes
+
+color1 666666
+color2 888888
+color3 444444
+color4 000000
+TEXT
+${color1}  Disk I/O:${color} ${diskio}\
+${color4} |${color1} wifi [${color3}$color${addr wlp2s0}${color1}] ${color1}Up:${color} ${upspeed wlp2s0}${color1} Down:${color} ${downspeed wlp2s0}\
+${color4}|${color1} MEM: [${color}$mem/$memmax $color1-${color} $memperc%$color1] \
+$color4|${color1} Battery: [${color}${battery_percent BAT1}% ${battery_bar 5,50 BAT1} ${color1}] \
+${alignr}${color4}| ${color1}CPU1: $color${cpu cpu1}% ${color1}CPU2: ${color}${cpu cpu2}% ${color1}CPU3: ${color}${cpu cpu3}% ${color1}CPU4: ${color}${cpu cpu4}%\

@@ -1,0 +1,129 @@
+# --- Interface ---------------------------------------------------------------------
+font -*-termsynu-medium-r-*-13-*-*-*-*-*-*-*
+# border only, no titlebar
+new_window pixel 1
+
+
+# --- Startup Applications ----------------------------------------------------------
+exec --no-startup-id (ssh-add &)
+
+
+# --- Keybindings -------------------------------------------------------------------
+set $mod Mod4
+
+bindsym $mod+Shift+e exec i3-msg exit
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+floating_modifier $mod
+bindsym $mod+r mode "resize"
+
+bindsym $mod+w           kill
+bindsym $mod+f           fullscreen
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+c split h
+bindsym $mod+v split v
+
+bindsym $mod+q layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a     focus parent
+bindsym $mod+s     focus child
+
+# vim-style window navigation: meta+H,J,K,L
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# arrow key window navigation: meta+arrowkeys
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# vim-style window movement with shift key: meta+shift+H,J,K,L
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# window movement with arrow keys and shift key: meta+shift+arrowkeys
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+bindsym $mod+period move workspace to output right
+bindsym $mod+comma move workspace to output left
+
+mode "resize" {
+   bindsym h resize shrink width 10 px or 10 ppt
+   bindsym j resize grow height 10 px or 10 ppt
+   bindsym k resize shrink height 10 px or 10 ppt
+   bindsym l resize grow width 10 px or 10 ppt
+
+   # same bindings, but for the arrow keys
+   bindsym Left resize shrink width 10 px or 10 ppt
+   bindsym Down resize grow height 10 px or 10 ppt
+   bindsym Up resize shrink height 10 px or 10 ppt
+   bindsym Right resize grow width 10 px or 10 ppt
+
+   # back to normal: Enter or Escape
+   bindsym Return mode "default"
+   bindsym Escape mode "default"
+}
+
+client.focused          #586e75 #586e75 #fdf6e3 #268bd2
+client.focused_inactive #073642 #073642 #93a1a1 #002b36
+client.unfocused        #002b36 #002b36 #586e75 #002b36
+client.urgent           #dc322f #dc322f #fdf6e3 #dc322f
+
+
+# --- Window Rules -------------------------------------------------------------------
+for_window [title="(p|P)references"] floating enable
+for_window [title="File Operation Progress"] floating enable
+for_window [instance="Steam" title="Friends"] floating enable
+for_window [title="QEMU"] floating enable
+for_window [instance="dwb-youtube"] floating enable
+for_window [instance="arandr"] border normal, floating enable
+
+
+# --- Application Shortcuts -----------------------------------------------------------
+bindsym $mod+Return       exec urxvtc
+bindsym $mod+d            exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -fn "-*-termsynu-medium-r-*-13-*-*-*-*-*-*-*" -nb "#002b36" -nf "#839496" -sb "#657b83" -sf "#fdf6e3"'
+bindsym $mod+m            exec --no-startup-id ~/bin/mpd_control
+bindsym $mod+Shift+Return exec --no-startup-id ~/bin/dmenu_ssh
+bindsym Control+mod1+l    exec --no-startup-id i3lock -i ~/.background.png -t
+bindsym Print --release   exec --no-startup-id scrot 'scrot-%Y-%m-%d-%H%M%S_$wx$h.png' -s -e 'mv $f ~/tmp/'
+
