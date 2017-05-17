@@ -1,18 +1,42 @@
-set nu
-syntax on
 imap jf <esc>
-set tabstop=4
+set nu
+filetype plugin on
+filetype indent on
 
-autocmd vimenter * NERDTree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <C-n> :NERDTreeToggle<CR>
+set nocompatible
+set path+=**
+set wildmenu
+set autoread
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+set ruler
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" for search
+set ignorecase
+set hlsearch
+
+" don't redraw for macros
+set lazyredraw
+
+syntax enable
+
+"tabs
+set expandtab
+set smarttab
+set shiftwidth=2
+set tabstop=2
+
+set ai "auto indent
+set si "smart indent
+
+set laststatus=2
+
+" NASL syntax highlighting
+let nasl_space_errors = 1
+autocmd BufNewFile,BufRead *.audit set syntax=xml
+autocmd BufNewFile,BufRead *.nasl set filetype=nasl
+autocmd BufNewFile,BufRead *.inc set filetype=nasl
+autocmd BufNewFile,BufRead *.inc set indentexpr=
+autocmd FileType nasl setlocal shiftwidth=2 tabstop=2 expandtab softtabstop=20
+
+
+execute pathogen#infect()
